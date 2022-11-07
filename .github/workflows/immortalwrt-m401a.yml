@@ -215,7 +215,8 @@ jobs:
       uses: unifreq/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt-armvirt/*rootfs.tar.gz
-        PACKAGE_SOC: x96max
+        PACKAGE_SOC: s905x2
+        SCRIPT_S905X2: mk_s905x2_x96max.sh
         WHOAMI: 10bits
         KERNEL_REPO_URL: https://github.com/ophub/kernel/tree/main/pub/stable
         KERNEL_VERSION_NAME: 5.15.13_6.0.2
