@@ -14,7 +14,8 @@ env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
   REPO_BRANCH: openwrt-21.02
   CONFIG_FILE: configs/m401a.config
-  DIY_SCRIPT: diy-mini.sh
+  DIY_SCRIPT: diy/custom.sh
+  FEEDS_SCRIPT: diy/feeds.sh
   CLASH_KERNEL: armv8
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
@@ -74,7 +75,9 @@ jobs:
 
     - name: Install Feeds
       run: |
+        chmod +x $FEEDS_SCRIPT
         cd $OPENWRT_PATH
+        $GITHUB_WORKSPACE/$FEEDS_SCRIPT
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
