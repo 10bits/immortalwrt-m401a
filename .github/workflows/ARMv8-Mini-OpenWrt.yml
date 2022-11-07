@@ -6,17 +6,14 @@
 # https://github.com/P3TERX
 #===============================================
 
-name: ARMv8 Mini OpenWrt
+name: immortalwrt-m401a
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0 22 * * *
-
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-  CONFIG_FILE: configs/armv8-mini.config
+  REPO_URL: https://github.com/immortalwrt/immortalwrt.git
+  REPO_BRANCH: openwrt-21.02
+  CONFIG_FILE: configs/m401a.config
   DIY_SCRIPT: diy-mini.sh
   CLASH_KERNEL: armv8
   UPLOAD_BIN_DIR: false
@@ -217,8 +214,8 @@ jobs:
       uses: unifreq/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt-armvirt/*rootfs.tar.gz
-        PACKAGE_SOC: all
-        WHOAMI: Haiibo
+        PACKAGE_SOC: x96max
+        WHOAMI: 10bits
         KERNEL_REPO_URL: https://github.com/ophub/kernel/tree/main/pub/stable
         KERNEL_VERSION_NAME: 5.15.13_6.0.2
         KERNEL_AUTO_LATEST: true
@@ -242,9 +239,7 @@ jobs:
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
           **This is OpenWrt Firmware for Armvirt 64**
-          * 这是 ARMv8 精简版，只集成了一些常用插件
+          * Build for m401a,Just for me
           默认 IP：192.168.1.1 默认密码：password
-          安装到 EMMC：系统 → 晶晨宝盒 → 安装 OpenWrt → 选择型号 → 安装
-          升级 OpenWrt：系统 → 晶晨宝盒 → 手动上传更新 或者 在线下载更新
           当前使用版本:【编译前的最后一次➦[主源码](https://github.com/coolsnowwolf/lede)更新记录】
           ${{ env.VERSION_INFO }}
