@@ -25,6 +25,7 @@ env:
 
 jobs:
   Build:
+    if: github.repository_owner == github.actor
     runs-on: ubuntu-22.04
 
     outputs:
