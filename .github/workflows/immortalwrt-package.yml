@@ -12,6 +12,7 @@ on:
   workflow_dispatch:
 env:
   FIRMWARE_TAG: ROOTFS_MINI
+  OPENWRT_TAG: ARMv8_MINI
   OPENWRT_RELEASE: true
   TZ: Asia/Shanghai
 
